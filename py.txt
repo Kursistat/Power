@@ -1,0 +1,28 @@
+import openpyxl
+wb = openpyxl.load_workbook('example.xlsx')
+sheet = wb.active
+# или
+sheet = wb['Sheet1']
+cell = sheet['A1']
+print(cell.value)
+# или
+value = sheet.cell(row=1, column=1).value
+
+cell.value = 'New value'
+row_count = sheet.max_row
+column_count = sheet.max_column
+
+new_sheet = wb.create_sheet('New Sheet')
+
+column_b = sheet['B']
+
+for i in range(len(column_b)):
+    print(column_b[i].value)
+
+# Или просто как итератор перебрать столбец:
+for cell in column_b:
+    print(cell.value)
+
+
+wb.save('new_example.xlsx')
+
