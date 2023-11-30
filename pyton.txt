@@ -1,0 +1,20 @@
+import openpyxl
+wb = openpyxl.load_workbook('D:\8.xlsm')
+sheet = wb.active
+# или
+#sheet = wb['Sheet1']
+cell = sheet['A10']
+#print(cell.value)
+column_b = sheet['A']
+M = 10
+for i in range(len(column_b)):
+    if (column_b[i].value)!="" and (column_b[i].value)!=None:
+        M=(column_b[i].value)
+    if (column_b[i].value)=="" :
+        column_b[i].value = M
+for i in range (9,20,2):
+    value = sheet.cell(row=7, column=i).value
+    sheet.unmerge_cells(start_row=7,start_column=i,end_row=7,end_column=i+1)
+    print(value)
+#sheet.delete_cols(5,1)
+wb.save('D:\9.xlsx')
